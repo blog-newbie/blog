@@ -4,7 +4,9 @@
 
 # IntelliJ project files
 .idea
+*.iws
 *.iml
+*.ipr
 out
 gen
 /dreamland-web/target/
