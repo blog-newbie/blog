@@ -28,4 +28,9 @@ public class IndexController extends BaseController {
         model.addAttribute("page",page);
         return "../index";
     }
+
+
+
+
+
 }

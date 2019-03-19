@@ -148,15 +148,16 @@
     </div>
     <div style="position: absolute;margin-left: 980px;margin-top: -40px;">
         <c:if test="${empty user}">
-            <a name="tj_login" class="lb" href="login" style="color: black">[登录]</a>
+            <a name="tj_login" class="lb" href="${ctx}/user/login" style="color: black">[登录]</a>
             &nbsp;&nbsp;
-            <a name="tj_login" class="lb" href="register" style="color: black">[注册]</a>
+            <a name="tj_login" class="lb" href="${ctx}/user/doRegister" style="color: black">[注册]</a>
+            <%-- post 请求注册，todo 待更改 --%>
         </c:if>
         <c:if test="${not empty user}">
             <a name="tj_loginp" href="javascript:void(0);" class="lb" onclick="personal('${user.id}');"
                style="color: black"><font color="#9370db">${user.nickName}, 欢迎您！</font></a>
             &nbsp;&nbsp;
-            <a name="tj_login" class="lb" href="${ctx}/loginout" style="color: black">[退出]</a>
+            <a name="tj_login" class="lb" href="${ctx}/user/loginout" style="color: black">[退出]</a>
         </c:if>
 
     </div>
