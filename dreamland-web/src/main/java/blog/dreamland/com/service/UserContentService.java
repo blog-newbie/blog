@@ -13,4 +13,8 @@ public interface UserContentService {
     PageHelper.Page<UserContent> findAllByUpvote(UserContent content, Integer pageNum, Integer pageSize);
     List<UserContent> findByUserId(Long uid );
     List<UserContent> findAll();
+
+    List<UserContent> findCategoryByUserId(Long uid);
+    PageHelper.Page<UserContent> findByCategory(String category,Long uid,Integer pageSize,Integer pageNum);
+
 }

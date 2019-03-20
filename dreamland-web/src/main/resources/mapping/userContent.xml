@@ -2,6 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="blog.dreamland.com.entity.UserContent">
+<mapper namespace="blog.dreamland.com.dao.UserContentMapper">
 
+    <select id="findCategoryByUserId" resultMap="categoryMap">
+      select category ,count(1) as num from user_content where  u_id=#{uid}
+      and personal='0'  group by category order by num desc
+    </select>
+    <resultMap id="categoryMap" type="blog.dreamland.com.entity.UserContent" autoMapping="true">
+        <id property="id" column="id"></id>
+    </resultMap>
 </mapper>

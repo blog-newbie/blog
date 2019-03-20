@@ -239,7 +239,9 @@ public class UserController extends BaseController {
                 //放到 session
                 getSession().setAttribute("user", user);
                 model.addAttribute("user", user);
-                return "/personal/personal";
+
+//                return "/personal/personal";
+                return  "redirect:/list";
             } else {
                 model.addAttribute("fail", "验证码失效");
                 return "../login";
@@ -284,7 +286,8 @@ public class UserController extends BaseController {
                     return "../login";
                 }
                 model.addAttribute("user", user);
-                return "/personal/personal";
+//                return "/personal/personal";
+                return  "redirect:/list";
             }
         }
 

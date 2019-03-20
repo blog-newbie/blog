@@ -4,6 +4,7 @@ import javax.persistence.Id;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 import java.util.Date;
 
 public class UserContent {
@@ -32,6 +33,17 @@ public class UserContent {
     private Integer commentNum;
 
     private String content;
+// 业务字段
+    @Transient
+    private  Integer num ;
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 
     public Long getId() {
         return id;
