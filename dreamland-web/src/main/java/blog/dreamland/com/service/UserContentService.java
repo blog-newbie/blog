@@ -17,4 +17,5 @@ public interface UserContentService {
     List<UserContent> findCategoryByUserId(Long uid);
     PageHelper.Page<UserContent> findByCategory(String category,Long uid,Integer pageSize,Integer pageNum);
 
+    PageHelper.Page<UserContent> findPersonal(Long id, Integer pageNum, Integer pageSize);
 }

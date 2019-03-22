@@ -9,10 +9,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -66,4 +70,49 @@ public class PersonalController extends BaseController {
 
          return "personal/personal";
     }
+
+
+    /** 通过category  查找 */
+    @RequestMapping("findByCategory")
+    @ResponseBody
+    public Map<String,Object> getsdf(Model model,
+                                     @RequestParam(value = "category", required = false) String category,
+                                     @RequestParam(value = "pageNum", required = false) Integer pageNum,
+                                     @RequestParam(value = "pageSize", required = false) Integer pageSize){
+        // var dataPage = data['pageCate'];
+
+
+        User user = (User) getSession().getAttribute("user");
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        if (user==null) {
+            stringObjectHashMap.put("pageCate", "fail");
+            return stringObjectHashMap;
+        }
+        pageSize=4;
+        PageHelper.Page<UserContent> pageCate = userContentService.findByCategory(category,user.getId(), pageNum, pageSize);
+        stringObjectHashMap.put("pageCate", pageCate);
+        return stringObjectHashMap;
+    }
+
+
+    @RequestMapping("/findPersonal")
+    @ResponseBody
+    public Map<String,Object> findPersonal(Model model,
+                                           @RequestParam(value = "pageNum",required = false) Integer pageNum ,
+                                           @RequestParam(value = "pageSize",required = false) Integer pageSize) {
+
+        Map map = new HashMap<String,Object>();
+        User user = (User)getSession().getAttribute("user");
+        if(user==null) {
+            map.put("page2","fail");
+            return map;
+        }
+        pageSize = 4; //默认每页显示4条数据
+        PageHelper.Page<UserContent> page = userContentService.findPersonal(user.getId(),pageNum,pageSize);
+        map.put("page2",page);
+        return map;
+    }
+
+
+
 }
